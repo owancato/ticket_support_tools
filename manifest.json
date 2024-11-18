@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "ticket support tools",
+    "version": "1.0",
+    "permissions": ["activeTab", "scripting", "storage"],
+    "action": {
+      "default_title": "購票輔助"
+    },
+    "options_page": "options.html",
+    "content_scripts": [
+      {
+        "matches" : [ "https://tixcraft.com/ticket/ticket/*" ],
+        "run_at": "document_end",
+        "js" : [ "jquery.min.js", "tixcraft/ticket.js" ]
+      },
+      {
+        "matches" : [ "https://tixcraft.com/ticket/area/*" ],
+        "run_at": "document_end",
+        "js" : [ "jquery.min.js", "tixcraft/area.js" ]
+      },
+      {
+        "matches" : [ "https://kktix.com/events/*/registrations/new" ],
+        "run_at": "document_idle",
+        "js" : [ "jquery.min.js", "kktix.js" ]
+      },
+      {
+        "matches" : [ "https://kham.com.tw/application/*" ],
+        "run_at": "document_end",
+        "js" : [ "jquery.min.js", "kham/ticket.js" ]
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
+    }
+  }
+  
